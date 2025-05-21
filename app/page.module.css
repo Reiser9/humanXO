@@ -466,12 +466,29 @@
     border-radius: 15px;
 }
 
-.dashboardSyncButton{
+.dashboardSyncInputInner{
+    width: 100%;
+    max-width: 200px;
+    position: relative;
+    margin-top: 2.4rem;
+}
+
+.dashboardSyncInputInner svg{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+    width: 24px;
+    fill: #ff4d00;
+    pointer-events: none;
+}
+
+.dashboardSyncInput{
+    width: 100%;
     background: #fff;
     color: #ff4d00;
-    padding: 1.6rem 4rem;
+    padding: 1.6rem 4.4rem 1.6rem 1.2rem;
     border-radius: 8px;
-    margin-top: 2.4rem;
     font-size: 1.4rem;
 }
 
@@ -594,8 +611,7 @@
         background: #e74601;
     }
 
-    .welcomeBlockConnect:hover, .downloadExtension:hover, .dashboardInfoClaim:hover,
-    .dashboardSyncButton:hover{
+    .welcomeBlockConnect:hover, .downloadExtension:hover, .dashboardInfoClaim:hover{
         background: #e7e7e7;
     }
 }

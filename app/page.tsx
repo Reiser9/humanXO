@@ -13,6 +13,7 @@ import {
     Face,
     Home,
     Home2,
+    Key,
     Moon,
     Star,
     Stats,
@@ -121,8 +122,8 @@ export default function HomePage() {
                         }}
                     >
                         {connectedWallet
-                                ? "Disonnect Wallet"
-                                : "Connect Wallet"}
+                            ? "Disonnect Wallet"
+                            : "Connect Wallet"}
                     </button>
                 </div>
             </div>
@@ -243,14 +244,17 @@ export default function HomePage() {
                                         and sync your HumanXO private key.
                                     </p>
 
-                                    <button
-                                        className={cn(
-                                            styles.button,
-                                            styles.dashboardSyncButton
-                                        )}
-                                    >
-                                        Import Private Key
-                                    </button>
+                                    <div className={styles.dashboardSyncInputInner}>
+                                        <input
+                                            className={cn(
+                                                styles.input,
+                                                styles.dashboardSyncInput
+                                            )}
+                                            placeholder="Import Private Key"
+                                        />
+
+                                        <Key />
+                                    </div>
                                 </div>
                             </div>
                         </div>

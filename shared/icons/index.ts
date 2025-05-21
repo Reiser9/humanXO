@@ -8,3 +8,4 @@ export { default as Stats } from "./Stats";
 export { default as Face } from "./Face";
 export { default as Menu } from "./Menu";
 export { default as Cross } from "./Cross";
+export { default as Key } from "./Key";
