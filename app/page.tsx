@@ -1,370 +1,213 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import cn from "classnames";
+import React from 'react';
+import Image from 'next/image';
+import cn from 'classnames';
 
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
 import {
-    Cross,
-    Dots,
     Face,
-    Home,
     Home2,
     Key,
-    Moon,
-    Star,
-    Stats,
-    Sun,
-} from "@/shared/icons";
+} from '@/shared/icons';
 
 export default function HomePage() {
-    const [theme, setTheme] = React.useState<"light" | "dark">("light");
     const [connectedWallet, setConnectedWallet] = React.useState(false);
-    const [mobileMenu, setMobileMenu] = React.useState(false);
-
+    
     return (
-        <div className={styles.content}>
-            <div
-                className={cn(styles.sidebar, {
-                    [styles.active]: mobileMenu,
-                })}
-            >
-                <div className={styles.sidebarTop}>
-                    <div className={styles.sidebarLogoInner}>
-                        <Link
-                            href="/"
-                            className={styles.sidebarLogo}
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            <Image src="/img/logo.png" alt="logo" fill />
-                        </Link>
-
-                        <button
-                            className={cn(styles.button, styles.sidebarClose)}
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            <Cross />
-                        </button>
-                    </div>
-
-                    <nav className={styles.sidebarNav}>
-                        <Link
-                            href="/"
-                            className={cn(styles.sidebarNavLink, styles.active)}
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            <Home />
-                            Dashboard
-                        </Link>
-
-                        <Link
-                            href="/"
-                            className={styles.sidebarNavLink}
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            <Star />
-                            Reputation
-                        </Link>
-
-                        <Link
-                            href="/"
-                            className={styles.sidebarNavLink}
-                            onClick={() => setMobileMenu(false)}
-                        >
-                            <Stats />
-                            Statistics
-                        </Link>
-                    </nav>
-                </div>
-
-                <div className={styles.sidebarBottom}>
-                    <div className={styles.sidebarBottomTheme}>
-                        <button
-                            className={cn(
-                                styles.button,
-                                styles.sidebarThemeItem,
-                                { [styles.active]: theme === "dark" }
-                            )}
-                            onClick={() => setTheme("dark")}
-                        >
-                            <Moon />
-                        </button>
-
-                        <button
-                            className={cn(
-                                styles.button,
-                                styles.sidebarThemeItem,
-                                { [styles.active]: theme === "light" }
-                            )}
-                            onClick={() => setTheme("light")}
-                        >
-                            <Sun />
-                        </button>
-                    </div>
-
+        <div className={styles.contentArea}>
+            <div className={styles.contentAreaWrapper}>
+                <div className={styles.contentAreaTop}>
                     <button
-                        className={cn(styles.button, styles.sidebarBottomMore)}
-                    >
-                        <Dots />
-                    </button>
-
-                    <button
-                        className={cn(
-                            styles.button,
-                            styles.sidebarMobileButton
-                        )}
-                        onClick={() => {
-                            setMobileMenu(false);
-                            setConnectedWallet((prev) => !prev);
-                        }}
+                        className={cn(styles.button, styles.connectButton)}
+                        onClick={() => setConnectedWallet(prev => !prev)}
                     >
                         {connectedWallet
-                            ? "Disonnect Wallet"
-                            : "Connect Wallet"}
+                            ? 'Disonnect Wallet'
+                            : 'Connect Wallet'}
                     </button>
                 </div>
-            </div>
 
-            <div className={styles.contentArea}>
-                <div className={styles.contentAreaWrapper}>
-                    <div className={styles.contentAreaTop}>
-                        <button
-                            className={cn(styles.button, styles.connectButton)}
-                            onClick={() => setConnectedWallet((prev) => !prev)}
-                        >
-                            {connectedWallet
-                                ? "Disonnect Wallet"
-                                : "Connect Wallet"}
-                        </button>
-                    </div>
+                {connectedWallet ? (
+                    <div className={styles.dashboard}>
+                        <div className={styles.dashboardInfo}>
+                            <div className={styles.dashboardInfoCircle}></div>
 
-                    {connectedWallet ? (
-                        <div className={styles.dashboard}>
-                            <div className={styles.dashboardInfo}>
+                            <p className={styles.dashboardInfoBread}>
+                                <Home2 />
+                                Dashboard
+                            </p>
+
+                            <p className={styles.dashboardInfoBalance}>
+                                100 Zkos
+                            </p>
+
+                            <button
+                                className={cn(
+                                    styles.button,
+                                    styles.dashboardInfoClaim
+                                )}
+                            >
+                                Claim Rewards
+                            </button>
+
+                            <p className={styles.dashboardInfoEarned}>
+                                Total Rewards Earned All Time
+                            </p>
+
+                            <p className={styles.dashboardInfoValue}>
+                                7322 Zkos
+                            </p>
+                        </div>
+
+                        <div className={styles.dashboardWrapper}>
+                            <div className={styles.dashboardInvite}>
+                                <Image src="/img/invite-bg.png" alt="bg" fill />
+
+                                <div className={styles.dashboardInviteContent}>
+                                    <p className={styles.dashboardInviteSoon}>
+                                        Coming soon
+                                    </p>
+
+                                    <div
+                                        className={
+                                            styles.dashboardInviteTextBlock
+                                        }
+                                    >
+                                        <p
+                                            className={
+                                                styles.dashboardInviteTitle
+                                            }
+                                        >
+                                            Invite friends, earn rewards!
+                                        </p>
+
+                                        <p
+                                            className={
+                                                styles.dashboardInviteText
+                                            }
+                                        >
+                                            Refer your friends and get extra
+                                            bonuses when they join.
+                                        </p>
+
+                                        <p
+                                            className={
+                                                styles.dashboardInviteText
+                                            }
+                                        >
+                                            The more you share, the more you
+                                            earn!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={styles.dashboardSync}>
                                 <div
-                                    className={styles.dashboardInfoCircle}
+                                    className={styles.dashboardSyncCircle}
                                 ></div>
 
-                                <p className={styles.dashboardInfoBread}>
-                                    <Home2 />
-                                    Dashboard
+                                <p className={styles.dashboardSyncTitle}>
+                                    Sync Browser Extension
                                 </p>
 
-                                <p className={styles.dashboardInfoBalance}>
-                                    100 Zkos
+                                <p className={styles.dashboardSyncText}>
+                                    To earn and claim your rewards, import and
+                                    sync your HumanXO private key.
+                                </p>
+
+                                <div className={styles.dashboardSyncInputInner}>
+                                    <input
+                                        className={cn(
+                                            styles.input,
+                                            styles.dashboardSyncInput
+                                        )}
+                                        placeholder="Import Private Key"
+                                    />
+
+                                    <Key />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className={styles.welcome}>
+                        <div className={styles.welcomeBlock}>
+                            <div className={styles.welcomeCircle}></div>
+
+                            <div className={styles.welcomeBlockContent}>
+                                <div className={styles.welcomeBlockTitleInner}>
+                                    <p>Welcome to</p>
+
+                                    <p>HumanXO by zkOS.</p>
+                                </div>
+
+                                <p className={styles.welcomeBlockText}>
+                                    Connect and start improving your on-chain
+                                    reputation:
+                                </p>
+
+                                <p className={styles.welcomeBlockText}>
+                                    By engaging with HumanXO, users strengthen
+                                    their on-chain identity, unlock rewards and
+                                    contribute to a more Sybil-resistant
+                                    blockchain.
                                 </p>
 
                                 <button
                                     className={cn(
                                         styles.button,
-                                        styles.dashboardInfoClaim
+                                        styles.welcomeBlockConnect
                                     )}
+                                    onClick={() => setConnectedWallet(true)}
                                 >
-                                    Claim Rewards
+                                    Connect Wallet
                                 </button>
-
-                                <p className={styles.dashboardInfoEarned}>
-                                    Total Rewards Earned All Time
-                                </p>
-
-                                <p className={styles.dashboardInfoValue}>
-                                    7322 Zkos
-                                </p>
                             </div>
+                        </div>
 
-                            <div className={styles.dashboardWrapper}>
-                                <div className={styles.dashboardInvite}>
+                        <div className={styles.welcomeWrapper}>
+                            <div className={styles.welcomeSolana}>
+                                <div className={styles.welcomeSolanaImg}>
                                     <Image
-                                        src="/img/invite-bg.png"
-                                        alt="bg"
+                                        src="/img/solana.png"
+                                        alt="Solana"
                                         fill
                                     />
-
-                                    <div
-                                        className={
-                                            styles.dashboardInviteContent
-                                        }
-                                    >
-                                        <p
-                                            className={
-                                                styles.dashboardInviteSoon
-                                            }
-                                        >
-                                            Coming soon
-                                        </p>
-
-                                        <div
-                                            className={
-                                                styles.dashboardInviteTextBlock
-                                            }
-                                        >
-                                            <p
-                                                className={
-                                                    styles.dashboardInviteTitle
-                                                }
-                                            >
-                                                Invite friends, earn rewards!
-                                            </p>
-
-                                            <p
-                                                className={
-                                                    styles.dashboardInviteText
-                                                }
-                                            >
-                                                Refer your friends and get extra
-                                                bonuses when they join.
-                                            </p>
-
-                                            <p
-                                                className={
-                                                    styles.dashboardInviteText
-                                                }
-                                            >
-                                                The more you share, the more you
-                                                earn!
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <div className={styles.dashboardSync}>
-                                    <div
-                                        className={styles.dashboardSyncCircle}
-                                    ></div>
+                                <div className={styles.welcomeSolanaText}>
+                                    <p>Built on Solana,</p>
 
-                                    <p className={styles.dashboardSyncTitle}>
-                                        Sync Browser Extension
-                                    </p>
+                                    <p>designed to increase</p>
 
-                                    <p className={styles.dashboardSyncText}>
-                                        To earn and claim your rewards, import
-                                        and sync your HumanXO private key.
-                                    </p>
-
-                                    <div className={styles.dashboardSyncInputInner}>
-                                        <input
-                                            className={cn(
-                                                styles.input,
-                                                styles.dashboardSyncInput
-                                            )}
-                                            placeholder="Import Private Key"
-                                        />
-
-                                        <Key />
-                                    </div>
+                                    <p>on-chain human activity.</p>
                                 </div>
+                            </div>
+
+                            <div className={styles.welcomeExtension}>
+                                <Face className={styles.welcomeExtensionIcon} />
+
+                                <p className={styles.welcomeExtensionText}>
+                                    Passively verify you&rsquo;re human, build
+                                    reputation in the HumanXO ecosystem, and
+                                    earn rewards.
+                                </p>
+
+                                <button
+                                    className={cn(
+                                        styles.button,
+                                        styles.downloadExtension
+                                    )}
+                                >
+                                    Download Browser Extension
+                                </button>
                             </div>
                         </div>
-                    ) : (
-                        <div className={styles.welcome}>
-                            <div className={styles.welcomeBlock}>
-                                <div className={styles.welcomeCircle}></div>
-
-                                <div className={styles.welcomeBlockContent}>
-                                    <div
-                                        className={
-                                            styles.welcomeBlockTitleInner
-                                        }
-                                    >
-                                        <p>Welcome to</p>
-
-                                        <p>HumanXO by zkOS.</p>
-                                    </div>
-
-                                    <p className={styles.welcomeBlockText}>
-                                        Connect and start improving your
-                                        on-chain reputation:
-                                    </p>
-
-                                    <p className={styles.welcomeBlockText}>
-                                        By engaging with HumanXO, users
-                                        strengthen their on-chain identity,
-                                        unlock rewards and contribute to a more
-                                        Sybil-resistant blockchain.
-                                    </p>
-
-                                    <button
-                                        className={cn(
-                                            styles.button,
-                                            styles.welcomeBlockConnect
-                                        )}
-                                        onClick={() => setConnectedWallet(true)}
-                                    >
-                                        Connect Wallet
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className={styles.welcomeWrapper}>
-                                <div className={styles.welcomeSolana}>
-                                    <div className={styles.welcomeSolanaImg}>
-                                        <Image
-                                            src="/img/solana.png"
-                                            alt="Solana"
-                                            fill
-                                        />
-                                    </div>
-
-                                    <div className={styles.welcomeSolanaText}>
-                                        <p>Built on Solana,</p>
-
-                                        <p>designed to increase</p>
-
-                                        <p>on-chain human activity.</p>
-                                    </div>
-                                </div>
-
-                                <div className={styles.welcomeExtension}>
-                                    <Face
-                                        className={styles.welcomeExtensionIcon}
-                                    />
-
-                                    <p className={styles.welcomeExtensionText}>
-                                        Passively verify you&rsquo;re human,
-                                        build reputation in the HumanXO
-                                        ecosystem, and earn rewards.
-                                    </p>
-
-                                    <button
-                                        className={cn(
-                                            styles.button,
-                                            styles.downloadExtension
-                                        )}
-                                    >
-                                        Download Browser Extension
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            <div className={styles.mobileMenu}>
-                <Link href="/" className={styles.mobileMenuLogo}>
-                    <Image src="/img/logo.png" alt="logo" fill />
-                </Link>
-
-                <Link href="/" className={styles.mobileMenuLink}>
-                    <Home />
-                    Dashboard
-                </Link>
-
-                <Link href="/" className={styles.mobileMenuLink}>
-                    <Star />
-                    Reputation
-                </Link>
-
-                <button
-                    className={cn(styles.button, styles.mobileMenuButton)}
-                    onClick={() => setMobileMenu(true)}
-                >
-                    <Dots />
-                    More
-                </button>
+                    </div>
+                )}
             </div>
         </div>
     );
