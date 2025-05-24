@@ -716,3 +716,237 @@
 @media(max-width: 480px){
 	
 }
+
+/* xw1nchester */
+.reputationBlock {
+    position: relative;
+    width: calc(50% - 10px);
+    padding: 16px 20px;
+    min-height: 228px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.reputationBlockRewards {
+    color: #FFF;
+}
+
+.reputationBlockContent {
+    position: relative;
+}
+
+.reputationBlockTitle {
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.reputationBlockText {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.reputationBold {
+    font-weight: 500;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reputationTabsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.reputationTabs {
+  display: flex;
+  background-color: #FF4D00;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.reputationTab {
+  padding: 7px;
+  min-width: 134px;
+  justify-content: center;
+  border-radius: 8px;
+  color: #FFF;
+}
+
+.reputationTabActive {
+  background-color: #FFF;
+  color: #000;
+  font-weight: 500;
+}
+
+.reputationLeaderboard {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: #FFE2D6;
+  border-radius: 6px;
+  padding: 7px 18px;
+  gap: 10px;
+}
+
+.reputationSubTabs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.reputationSubTab {
+    color: #707070;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding: 6px 12px;
+}
+
+.reputationSubTabActive {
+    color: #FF4D00;
+    border-bottom: 1px solid #FF4D00;
+}
+
+.reputationCards {
+    width: 100%;
+    max-width: 812px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.reputationCard {
+    width: calc(100% / 3 - 2 * 16px / 3);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.reputationCard.rokie {
+    background-color: #E1E1E1;
+}
+
+.reputationCard.pro {
+    background-color: #D1DFF2;
+}
+
+.reputationCard.master {
+    background-color: #F5E6BD;
+}
+
+.reputationCardHeader {
+    min-height: 102px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.reputationCardLabel {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 9px;
+    background-color: #FFF;
+    padding: 1px 5px;
+    border-radius: 2px;
+}
+
+.reputationCardLabel.live {
+    background-color: #194827;
+    color: #21FF63;
+}
+
+.reputationCardLabel.finished {
+    color: #FF4D00;
+}
+
+.reputationCardTitle {
+    position: relative;
+    font-size: 18px;
+    color: #3A3A3A;
+}
+
+.reputationCardStats {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.reputationCardStatsInfo {
+    color: #707070;
+    font-size: 12px;
+}
+
+.reputationCardStatsDiagram {
+    width: 100%;
+    background-color: #707070;
+    height: 7px;
+    border-radius: 3.5px;
+    display: flex;
+}
+
+.reputationCardStatsValue {
+    height: 100%;
+    background: linear-gradient(to right, #FF4D00, #FFF);
+    border-radius: 3.5px;
+}
+
+.reputationCardStatsBottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 300;
+    color: #3A3A3A;
+}
+
+.reputationCardStatsHighlitedText {
+    color: #FF4D00;
+}
+
+.reputationCardContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.reputationCardGroup {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.reputationCardGroup:not(:last-child) {
+    border-bottom: 1px solid #BABABA;    
+}
+
+.reputationCardItem {
+    font-size: 14px;
+    color: #3A3A3A;
+}
+
+.reputationCardBtn {
+    background-color: #FDD9CA;
+    color: #FF4D00;
+    border: 1px solid #FF4D00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    padding: 5.5px;
+}
