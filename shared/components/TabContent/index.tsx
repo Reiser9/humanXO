@@ -2,30 +2,11 @@
 
 import React, { useState } from 'react';
 
-import CardItem from './card-item';
+import { Card, CardType, Status } from '../../types/card';
 
-import styles from '../page.module.css';
+import CardItem from '../CardItem';
 
-enum CardType {
-    Rokie = 'rokie',
-    Pro = 'pro',
-    Master = 'master'
-}
-
-enum Status {
-    Live = 'live',
-    Date = 'date',
-    Finished = 'finished'
-}
-
-interface Card {
-    id: number;
-    type: CardType;
-    name: string;
-    status: Status;
-    date: string;
-    percent: number;
-}
+import styles from './index.module.css';
 
 const cards: Card[] = [
     {
@@ -126,7 +107,11 @@ const cards: Card[] = [
     }
 ];
 
-const TabContent = () => {
+interface Props {
+    handleOpenPopup: () => void;
+}
+
+const TabContent: React.FC<Props> = ({ handleOpenPopup }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
@@ -169,7 +154,7 @@ const TabContent = () => {
             {activeIndex == 0 && (
                 <div className={styles.reputationCards}>
                     {cards.map(card => (
-                        <CardItem key={card.id} card={card} />
+                        <CardItem key={card.id} card={card} handleOpenPopup={handleOpenPopup} />
                     ))}
                 </div>
             )}
@@ -177,7 +162,7 @@ const TabContent = () => {
             {activeIndex == 1 && (
                 <div className={styles.reputationCards}>
                     {cards.slice(0, 4).map(card => (
-                        <CardItem key={card.id} card={card} />
+                        <CardItem key={card.id} card={card} handleOpenPopup={handleOpenPopup} />
                     ))}
                 </div>
             )}
@@ -185,7 +170,7 @@ const TabContent = () => {
             {activeIndex == 2 && (
                 <div className={styles.reputationCards}>
                     {cards.slice(4, 8).map(card => (
-                        <CardItem key={card.id} card={card} />
+                        <CardItem key={card.id} card={card} handleOpenPopup={handleOpenPopup} />
                     ))}
                 </div>
             )}
@@ -193,7 +178,7 @@ const TabContent = () => {
             {activeIndex == 3 && (
                 <div className={styles.reputationCards}>
                     {cards.slice(8, 12).map(card => (
-                        <CardItem key={card.id} card={card} />
+                        <CardItem key={card.id} card={card} handleOpenPopup={handleOpenPopup} />
                     ))}
                 </div>
             )}

@@ -15,28 +15,28 @@ const CardKey = ({ ...props }) => {
                 height="8.33333"
                 rx="2.08333"
                 stroke="currentColor"
-                stroke-width="0.625"
+                strokeWidth="0.625"
             />
             <path
                 d="M7.29167 5.70831L4.375 5.70831"
                 stroke="currentColor"
-                stroke-width="0.625"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="0.625"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M7.29166 4.87498L7.29166 5.70831"
                 stroke="currentColor"
-                stroke-width="0.625"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="0.625"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M6.25 4.87498L6.25 5.70831"
                 stroke="currentColor"
-                stroke-width="0.625"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="0.625"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <circle
                 cx="0.833333"
@@ -44,7 +44,7 @@ const CardKey = ({ ...props }) => {
                 r="0.833333"
                 transform="matrix(-1 0 0 1 4.375 4.875)"
                 stroke="currentColor"
-                stroke-width="0.625"
+                strokeWidth="0.625"
             />
         </svg>
     );

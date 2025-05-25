@@ -19,3 +19,6 @@ export { default as CardKey } from "./CardKey";
 export { default as CardType1 } from "./CardType1";
 export { default as CardType2 } from "./CardType2";
 export { default as CardType3 } from "./CardType3";
+export { default as ArrowLeft } from "./ArrowLeft";
+export { default as ArrowRightCircle } from "./ArrowRightCircle";
+export { default as Congratulations } from "./Congratulations";

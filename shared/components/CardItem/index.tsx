@@ -1,7 +1,13 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 
-import styles from '../page.module.css';
+import { Card, Status } from '../../types/card';
+
+import styles from './index.module.css';
+// TODO: так наверно не должно быть
+import pageStyles from '@/app/page.module.css';
 
 import {
     CardKey,
@@ -9,34 +15,15 @@ import {
     CardType1,
     CardType2,
     CardType3,
+    Flag,
     Gift,
     Login,
     Star
 } from '@/shared/icons';
 
-enum CardType {
-    Rokie = 'rokie',
-    Pro = 'pro',
-    Master = 'master'
-}
-
-enum Status {
-    Live = 'live',
-    Date = 'date',
-    Finished = 'finished'
-}
-
-interface Card {
-    id: number;
-    type: CardType;
-    name: string;
-    status: Status;
-    date: string;
-    percent: number;
-}
-
 interface Props {
     card: Card;
+    handleOpenPopup: () => void;
 }
 
 const typeIcons = {
@@ -51,20 +38,33 @@ const typePaths = {
     master: '/img/type3.png'
 };
 
-const CardItem: React.FC<Props> = ({ card }) => {
+const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
     return (
         <div className={`${styles.reputationCard} ${styles[card.type]}`}>
             <div className={styles.reputationCardHeader}>
                 <Image src={typePaths[card.type]} alt="bg" fill />
                 <span
-                    className={`${styles.reputationCardLabel} ${styles.item} ${
-                        styles[card.status]
-                    }`}
+                    className={`${styles.reputationCardLabel} ${
+                        pageStyles.item
+                    } ${styles[card.status]}`}
                 >
-                    {card.status == Status.Live && <CardLive width={12} />}
-                    19.02.2023
+                    {card.status == Status.Live && (
+                        <>
+                            <CardLive width={12} />
+                            Live Now
+                        </>
+                    )}
+                    {card.status == Status.Date && <>{card.date}</>}
+                    {card.status == Status.Finished && (
+                        <>
+                            <Flag width={12} />
+                            Finished
+                        </>
+                    )}
                 </span>
-                <p className={`${styles.reputationCardTitle} ${styles.item}`}>
+                <p
+                    className={`${styles.reputationCardTitle} ${pageStyles.item}`}
+                >
                     {typeIcons[card.type]}
                     {card.name}
                 </p>
@@ -93,13 +93,13 @@ const CardItem: React.FC<Props> = ({ card }) => {
             <div className={styles.reputationCardContent}>
                 <div className={styles.reputationCardGroup}>
                     <div
-                        className={`${styles.reputationCardItem} ${styles.item}`}
+                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
                     >
                         <Gift width={12} color={'#FF4D00'} />
                         500 ZKOS
                     </div>
                     <div
-                        className={`${styles.reputationCardItem} ${styles.item}`}
+                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
                     >
                         <Login width={12} color={'#FF4D00'} />
                         50
@@ -107,12 +107,12 @@ const CardItem: React.FC<Props> = ({ card }) => {
                 </div>
                 <div className={styles.reputationCardGroup}>
                     <div
-                        className={`${styles.reputationCardItem} ${styles.item}`}
+                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
                     >
                         <CardKey width={12} color={'#FF4D00'} />5 ZKOS
                     </div>
                     <div
-                        className={`${styles.reputationCardItem} ${styles.item}`}
+                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
                     >
                         <Star width={12} color={'#FF4D00'} />5
                     </div>
@@ -120,7 +120,8 @@ const CardItem: React.FC<Props> = ({ card }) => {
             </div>
             {card.status == Status.Live && (
                 <button
-                    className={`${styles.reputationCardBtn} ${styles.item}`}
+                    onClick={handleOpenPopup}
+                    className={`${styles.reputationCardBtn} ${pageStyles.item}`}
                 >
                     Start Now
                 </button>

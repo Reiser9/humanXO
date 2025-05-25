@@ -69,6 +69,11 @@ button {
     cursor: pointer;
 }
 
+button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 ul{
 	margin: 0;
 	padding: 0;
