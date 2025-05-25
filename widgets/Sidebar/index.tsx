@@ -1,24 +1,27 @@
-'use client'
+"use client";
 
-import React from 'react';
-import cn from 'classnames';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from "react";
+import cn from "classnames";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-import styles from './page.module.css';
+import styles from "./index.module.css";
 
-import { Cross, Moon, Stats, Sun, Dots, Home, Star } from '@/shared/icons';
+import { Cross, Moon, Stats, Sun, Dots, Home, Star } from "@/shared/icons";
 
 const Sidebar = () => {
-    const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+    const [theme, setTheme] = React.useState<"light" | "dark">("light");
     const [connectedWallet, setConnectedWallet] = React.useState(false);
     const [mobileMenu, setMobileMenu] = React.useState(false);
+
+    const path = usePathname();
 
     return (
         <>
             <div
                 className={cn(styles.sidebar, {
-                    [styles.active]: mobileMenu
+                    [styles.active]: mobileMenu,
                 })}
             >
                 <div className={styles.sidebarTop}>
@@ -42,7 +45,9 @@ const Sidebar = () => {
                     <nav className={styles.sidebarNav}>
                         <Link
                             href="/"
-                            className={cn(styles.sidebarNavLink, styles.active)}
+                            className={cn(styles.sidebarNavLink, {
+                                [styles.active]: path === "/",
+                            })}
                             onClick={() => setMobileMenu(false)}
                         >
                             <Home />
@@ -51,7 +56,9 @@ const Sidebar = () => {
 
                         <Link
                             href="/reputation"
-                            className={styles.sidebarNavLink}
+                            className={cn(styles.sidebarNavLink, {
+                                [styles.active]: path === "/reputation",
+                            })}
                             onClick={() => setMobileMenu(false)}
                         >
                             <Star />
@@ -60,7 +67,9 @@ const Sidebar = () => {
 
                         <Link
                             href="/"
-                            className={styles.sidebarNavLink}
+                            className={cn(styles.sidebarNavLink, {
+                                [styles.active]: path === "/statistics",
+                            })}
                             onClick={() => setMobileMenu(false)}
                         >
                             <Stats />
@@ -76,10 +85,10 @@ const Sidebar = () => {
                                 styles.button,
                                 styles.sidebarThemeItem,
                                 {
-                                    [styles.active]: theme === 'dark'
+                                    [styles.active]: theme === "dark",
                                 }
                             )}
-                            onClick={() => setTheme('dark')}
+                            onClick={() => setTheme("dark")}
                         >
                             <Moon />
                         </button>
@@ -89,10 +98,10 @@ const Sidebar = () => {
                                 styles.button,
                                 styles.sidebarThemeItem,
                                 {
-                                    [styles.active]: theme === 'light'
+                                    [styles.active]: theme === "light",
                                 }
                             )}
-                            onClick={() => setTheme('light')}
+                            onClick={() => setTheme("light")}
                         >
                             <Sun />
                         </button>
@@ -111,15 +120,16 @@ const Sidebar = () => {
                         )}
                         onClick={() => {
                             setMobileMenu(false);
-                            setConnectedWallet(prev => !prev);
+                            setConnectedWallet((prev) => !prev);
                         }}
                     >
                         {connectedWallet
-                            ? 'Disonnect Wallet'
-                            : 'Connect Wallet'}
+                            ? "Disonnect Wallet"
+                            : "Connect Wallet"}
                     </button>
                 </div>
             </div>
+
             <div className={styles.mobileMenu}>
                 <Link href="/" className={styles.mobileMenuLogo}>
                     <Image src="/img/logo.png" alt="logo" fill />

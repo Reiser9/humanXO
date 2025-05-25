@@ -1,0 +1,248 @@
+.sidebar {
+    width: 100%;
+    max-width: 250px;
+    background: #fff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    justify-content: space-between;
+    padding: 3rem 2.4rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebarTop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.sidebarLogo,
+.mobileMenuLogo {
+    width: 100%;
+    max-width: 75px;
+    height: 60px;
+    display: flex;
+    position: relative;
+}
+
+.mobileMenuLogo {
+    max-width: 45px;
+    height: 35px;
+}
+
+.sidebarLogo img,
+.mobileMenuLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sidebarNav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.sidebarNavLink {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1.2rem 1.6rem;
+    color: #9b9b9b;
+    border-radius: 8px;
+    font-size: 1.4rem;
+}
+
+.sidebarNavLink.active {
+    color: #ff4d00;
+    background: #ffe2d6;
+}
+
+.sidebarNavLink svg {
+    width: 20px;
+    flex-shrink: 0;
+}
+
+.sidebarBottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.sidebarBottomMore {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #ff4d00;
+}
+
+.sidebarBottomMore svg {
+    width: 24px;
+    flex-shrink: 0;
+}
+
+.sidebarBottomTheme {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+}
+
+.sidebarThemeItem {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #999;
+}
+
+.sidebarThemeItem.active {
+    background: #ff4d00;
+    color: #fff;
+}
+
+.sidebarThemeItem svg {
+    width: 24px;
+    flex-shrink: 0;
+}
+
+.sidebarClose {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #fff;
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebarClose svg {
+    width: 24px;
+    flex-shrink: 0;
+}
+
+.sidebarLogoInner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.sidebarMobileButton {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #ff4d00;
+    border-radius: 10px;
+    padding: 1.2rem;
+    display: none;
+}
+
+.mobileMenu {
+    width: calc(100% - 24px);
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    background: #fff;
+    border-radius: 10px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 2.4rem;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.mobileMenuLink,
+.mobileMenuButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.mobileMenuLink svg,
+.mobileMenuButton svg {
+    width: 20px;
+}
+
+/* Responsive */
+@media(any-hover: hover) {
+    .sidebarNavLink:hover {
+        color: #ff4d00;
+        background: #ffe2d6;
+    }
+
+    .sidebarMobileButton:hover {
+        background: #e74601;
+    }
+}
+
+@media(max-width: 998px) {
+    .sidebar {
+        max-width: 220px;
+    }
+}
+@media(max-width: 768px) {
+    .sidebar {
+        max-width: 200px;
+        padding: 2.4rem 1.2rem;
+        border-radius: 0 7px 7px 0;
+    }
+}
+@media (max-width: 600px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        max-width: 100%;
+        transform: translateY(110%);
+        opacity: 0;
+        transition: .2s linear;
+    }
+
+    .sidebar.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .sidebarClose {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .mobileMenu {
+        pointer-events: all;
+        opacity: 1;
+    }
+
+    .sidebarMobileButton {
+        display: inline-block;
+    }
+}

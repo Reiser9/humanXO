@@ -1,26 +1,33 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import cn from 'classnames';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState } from "react";
+import cn from "classnames";
+import Image from "next/image";
+import Link from "next/link";
 
-import TabContent from '@/shared/components/TabContent';
+import TabContent from "@/shared/components/TabContent";
 
-import styles from '../page.module.css';
+import styles from "../page.module.css";
 
-import { ArrowLeft, ArrowRightCircle, Congratulations, Crown, Flag, Live } from '@/shared/icons';
-import Popup from '@/shared/components/Popup';
+import {
+    ArrowLeft,
+    ArrowRightCircle,
+    Congratulations,
+    Crown,
+    Flag,
+    Live,
+} from "@/shared/icons";
+import Popup from "@/shared/components/Popup";
 
 const questions = [
     {
-        question: 'Which gas is the lightest?',
-        answers: ['Oxygen', 'Hydrogen ', 'Nitrogen', 'Carbon dioxide']
+        question: "Which gas is the lightest?",
+        answers: ["Oxygen", "Hydrogen ", "Nitrogen", "Carbon dioxide"],
     },
     {
-        question: 'What planet is known as the Red Planet?',
-        answers: ['Jupiter', 'Venus', 'Mars ']
-    }
+        question: "What planet is known as the Red Planet?",
+        answers: ["Jupiter", "Venus", "Mars "],
+    },
 ];
 
 const Reputation = () => {
@@ -51,19 +58,19 @@ const Reputation = () => {
             return handleClosePopup();
         }
 
-        setCurrentStep(prev => prev - 1);
+        setCurrentStep((prev) => prev - 1);
     };
 
     const handleAnswer = (answer: string) => {
-        setSelectedAnswers(prev => ({
+        setSelectedAnswers((prev) => ({
             ...prev,
-            [currentStep]: prev[currentStep] === answer ? '' : answer
+            [currentStep]: prev[currentStep] === answer ? "" : answer,
         }));
     };
 
     const handleNext = () => {
         if (!isFinished) {
-            setCurrentStep(prev => prev + 1);
+            setCurrentStep((prev) => prev + 1);
         }
     };
 
@@ -82,31 +89,38 @@ const Reputation = () => {
                                 Connect Wallet
                             </button>
                         </div>
+
                         <div className={styles.dashboardWrapper}>
                             <div
-                                className={`${styles.reputationBlock} ${styles.reputationBlockRewards}`}
+                                className={cn(
+                                    styles.reputationBlock,
+                                    styles.reputationBlockRewards
+                                )}
                             >
                                 <Image src="/img/rewards.png" alt="bg" fill />
+                                
                                 <div className={styles.reputationBlockContent}>
                                     <p className={styles.reputationBlockTitle}>
                                         750 ZKOS
                                     </p>
                                     <p className={styles.reputationBlockText}>
-                                        Total{' '}
+                                        Total{" "}
                                         <span className={styles.reputationBold}>
                                             Rewards Distributed
                                         </span>
                                     </p>
                                 </div>
                             </div>
+
                             <div className={styles.reputationBlock}>
                                 <Image src="/img/burned.png" alt="bg" fill />
+
                                 <div className={styles.reputationBlockContent}>
                                     <p className={styles.reputationBlockTitle}>
                                         750 ZKOS
                                     </p>
                                     <p className={styles.reputationBlockText}>
-                                        Total{' '}
+                                        Total{" "}
                                         <span className={styles.reputationBold}>
                                             Burned Tokens
                                         </span>
@@ -114,44 +128,56 @@ const Reputation = () => {
                                 </div>
                             </div>
                         </div>
+
                         <div className={styles.reputationTabsWrapper}>
                             <Link
                                 href="#"
-                                className={`${styles.reputationLeaderboard} ${styles.item}`}
+                                className={cn(
+                                    styles.reputationLeaderboard,
+                                    styles.item
+                                )}
                             >
                                 <Crown width={18} />
                                 Leaderboard
                             </Link>
+
                             <div className={styles.reputationTabs}>
                                 <button
                                     onClick={() => setActiveIndex(0)}
-                                    className={`${styles.item} ${
-                                        styles.reputationTab
-                                    } ${
-                                        activeIndex == 0
-                                            ? styles.reputationTabActive
-                                            : ''
-                                    }`}
+                                    className={cn(
+                                        styles.item,
+                                        styles.reputationTab,
+                                        {
+                                            [styles.reputationTabActive]:
+                                                activeIndex == 0,
+                                        }
+                                    )}
                                 >
                                     <Live width={18} />
                                     Live
                                 </button>
+
                                 <button
                                     onClick={() => setActiveIndex(1)}
-                                    className={`${styles.item} ${
-                                        styles.reputationTab
-                                    } ${
-                                        activeIndex == 1
-                                            ? styles.reputationTabActive
-                                            : ''
-                                    }`}
+                                    className={cn(
+                                        styles.item,
+                                        styles.reputationTab,
+                                        {
+                                            [styles.reputationTabActive]:
+                                                activeIndex == 1,
+                                        }
+                                    )}
                                 >
                                     <Flag width={18} />
                                     Finished
                                 </button>
                             </div>
                         </div>
-                        {activeIndex == 0 ? <TabContent handleOpenPopup={handleOpenPopup} /> : <p>No data</p>}
+                        {activeIndex == 0 ? (
+                            <TabContent handleOpenPopup={handleOpenPopup} />
+                        ) : (
+                            <p>No data</p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -161,7 +187,7 @@ const Reputation = () => {
                     <div className={styles.quizPopupHead}>
                         <button
                             onClick={handleBack}
-                            className={`${styles.quizPopupBack} ${styles.item}`}
+                            className={cn(styles.quizPopupBack, styles.item)}
                         >
                             <ArrowLeft width={36} />
                         </button>
@@ -176,7 +202,10 @@ const Reputation = () => {
                         </div>
                     </div>
                     <div className={styles.quizPopupBar}>
-                        <div className={styles.quizPopupBarValue} style={{width: `${percent}%`}}></div>
+                        <div
+                            className={styles.quizPopupBarValue}
+                            style={{ width: `${percent}%` }}
+                        ></div>
                     </div>
                     <div className={styles.quizPopupContent}>
                         {isFinished ? (
@@ -188,7 +217,10 @@ const Reputation = () => {
                                 <Congratulations width={122} />
                                 <button
                                     onClick={handleClosePopup}
-                                    className={`${styles.quizPopupBtn} ${styles.item}`}
+                                    className={cn(
+                                        styles.quizPopupBtn,
+                                        styles.item
+                                    )}
                                 >
                                     Back to Home
                                     <ArrowRightCircle width={24} />
@@ -200,17 +232,18 @@ const Reputation = () => {
                                     {currentQuestion.question}
                                 </p>
                                 <div className={styles.quizPopupChoices}>
-                                    {currentQuestion.answers.map(answer => (
+                                    {currentQuestion.answers.map((answer) => (
                                         <button
                                             key={answer}
                                             onClick={() => handleAnswer(answer)}
-                                            className={`${
-                                                styles.quizPopupChoice
-                                            } ${
-                                                selectedAnswer == answer
-                                                    ? styles.quizPopupChoiceActive
-                                                    : ''
-                                            }`}
+                                            className={cn(
+                                                styles.quizPopupChoice,
+                                                {
+                                                    [styles.quizPopupChoiceActive]:
+                                                        selectedAnswer ==
+                                                        answer,
+                                                }
+                                            )}
                                         >
                                             <span
                                                 className={
@@ -226,7 +259,10 @@ const Reputation = () => {
                                 <button
                                     onClick={handleNext}
                                     disabled={!selectedAnswer}
-                                    className={`${styles.quizPopupBtn} ${styles.item}`}
+                                    className={cn(
+                                        styles.quizPopupBtn,
+                                        styles.item
+                                    )}
                                 >
                                     Submit Answer
                                     <ArrowRightCircle width={24} />

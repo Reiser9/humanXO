@@ -1,17 +1,17 @@
-import React from 'react';
-import type { Metadata } from 'next';
+import React from "react";
+import type { Metadata } from "next";
 
-import Sidebar from './sidebar';
+import Sidebar from "@/widgets/Sidebar";
 
-import './globals.css';
-import styles from './page.module.css';
+import "./globals.css";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-    title: 'XO Dashboard'
+    title: "XO Dashboard",
 };
 
 export default function RootLayout({
-    children
+    children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {

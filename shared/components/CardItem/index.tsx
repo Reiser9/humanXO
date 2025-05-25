@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
+import cn from "classnames";
 
-import { Card, Status } from '../../types/card';
+import { Card, Status } from "../../types/card";
 
-import styles from './index.module.css';
-// TODO: так наверно не должно быть
-import pageStyles from '@/app/page.module.css';
+import styles from "./index.module.css";
+import pageStyles from "@/app/page.module.css";
 
 import {
     CardKey,
@@ -18,8 +18,8 @@ import {
     Flag,
     Gift,
     Login,
-    Star
-} from '@/shared/icons';
+    Star,
+} from "@/shared/icons";
 
 interface Props {
     card: Card;
@@ -29,24 +29,27 @@ interface Props {
 const typeIcons = {
     rokie: <CardType1 width={18} />,
     pro: <CardType2 width={12} />,
-    master: <CardType3 width={12} />
+    master: <CardType3 width={12} />,
 };
 
 const typePaths = {
-    rokie: '/img/type1.png',
-    pro: '/img/type2.png',
-    master: '/img/type3.png'
+    rokie: "/img/type1.png",
+    pro: "/img/type2.png",
+    master: "/img/type3.png",
 };
 
 const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
     return (
-        <div className={`${styles.reputationCard} ${styles[card.type]}`}>
+        <div className={cn(styles.reputationCard, styles[card.type])}>
             <div className={styles.reputationCardHeader}>
                 <Image src={typePaths[card.type]} alt="bg" fill />
+                
                 <span
-                    className={`${styles.reputationCardLabel} ${
+                    className={cn(
+                        styles.reputationCardLabel,
+                        styles[card.status],
                         pageStyles.item
-                    } ${styles[card.status]}`}
+                    )}
                 >
                     {card.status == Status.Live && (
                         <>
@@ -62,24 +65,26 @@ const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
                         </>
                     )}
                 </span>
-                <p
-                    className={`${styles.reputationCardTitle} ${pageStyles.item}`}
-                >
+
+                <p className={cn(styles.reputationCardTitle, pageStyles.item)}>
                     {typeIcons[card.type]}
                     {card.name}
                 </p>
             </div>
+
             {card.status != Status.Live && (
                 <div className={styles.reputationCardStats}>
                     <p className={styles.reputationCardStatsInfo}>
                         32/50 Participants
                     </p>
+
                     <div className={styles.reputationCardStatsDiagram}>
                         <div
                             className={styles.reputationCardStatsValue}
                             style={{ width: `${card.percent}%` }}
                         ></div>
                     </div>
+
                     <div className={styles.reputationCardStatsBottom}>
                         <div
                             className={styles.reputationCardStatsHighlitedText}
@@ -90,38 +95,55 @@ const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
                     </div>
                 </div>
             )}
+
             <div className={styles.reputationCardContent}>
                 <div className={styles.reputationCardGroup}>
                     <div
-                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
+                        className={cn(
+                            styles.reputationCardItem,
+                            pageStyles.item
+                        )}
                     >
-                        <Gift width={12} color={'#FF4D00'} />
+                        <Gift width={12} color={"#FF4D00"} />
                         500 ZKOS
                     </div>
+
                     <div
-                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
+                        className={cn(
+                            styles.reputationCardItem,
+                            pageStyles.item
+                        )}
                     >
-                        <Login width={12} color={'#FF4D00'} />
+                        <Login width={12} color={"#FF4D00"} />
                         50
                     </div>
                 </div>
+
                 <div className={styles.reputationCardGroup}>
                     <div
-                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
+                        className={cn(
+                            styles.reputationCardItem,
+                            pageStyles.item
+                        )}
                     >
-                        <CardKey width={12} color={'#FF4D00'} />5 ZKOS
+                        <CardKey width={12} color={"#FF4D00"} />5 ZKOS
                     </div>
+
                     <div
-                        className={`${styles.reputationCardItem} ${pageStyles.item}`}
+                        className={cn(
+                            styles.reputationCardItem,
+                            pageStyles.item
+                        )}
                     >
-                        <Star width={12} color={'#FF4D00'} />5
+                        <Star width={12} color={"#FF4D00"} />5
                     </div>
                 </div>
             </div>
+
             {card.status == Status.Live && (
                 <button
                     onClick={handleOpenPopup}
-                    className={`${styles.reputationCardBtn} ${pageStyles.item}`}
+                    className={cn(styles.reputationCardBtn, pageStyles.item)}
                 >
                     Start Now
                 </button>
