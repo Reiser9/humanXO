@@ -22,3 +22,4 @@ export { default as CardType3 } from "./CardType3";
 export { default as ArrowLeft } from "./ArrowLeft";
 export { default as ArrowRightCircle } from "./ArrowRightCircle";
 export { default as Congratulations } from "./Congratulations";
+export { default as Info } from "./Info";

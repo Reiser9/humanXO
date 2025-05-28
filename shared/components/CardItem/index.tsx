@@ -17,6 +17,7 @@ import {
     CardType3,
     Flag,
     Gift,
+    Info,
     Login,
     Star,
 } from "@/shared/icons";
@@ -39,26 +40,38 @@ const typePaths = {
 };
 
 const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
+    const { name, percent, status, date, type, info } = card || {};
+    const { title, text } = info || {};
+
     return (
-        <div className={cn(styles.reputationCard, styles[card.type])}>
+        <div className={cn(styles.reputationCard, styles[type])}>
             <div className={styles.reputationCardHeader}>
-                <Image src={typePaths[card.type]} alt="bg" fill />
-                
+                <Image src={typePaths[type]} alt="bg" fill />
+
+                {info && <div className={styles.reputationCardInfo}>
+                    <Info />
+
+                    <div className={styles.reputationCardTooltip}>
+                        <p className={styles.reputationCardTooltipTitle}>{title}</p>
+                        <p className={styles.reputationCardTooltipText}>{text}</p>
+                    </div>
+                </div>}
+
                 <span
                     className={cn(
                         styles.reputationCardLabel,
-                        styles[card.status],
+                        styles[status],
                         pageStyles.item
                     )}
                 >
-                    {card.status == Status.Live && (
+                    {status == Status.Live && (
                         <>
                             <CardLive width={12} />
                             Live Now
                         </>
                     )}
-                    {card.status == Status.Date && <>{card.date}</>}
-                    {card.status == Status.Finished && (
+                    {status == Status.Date && <>{date}</>}
+                    {status == Status.Finished && (
                         <>
                             <Flag width={12} />
                             Finished
@@ -67,12 +80,12 @@ const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
                 </span>
 
                 <p className={cn(styles.reputationCardTitle, pageStyles.item)}>
-                    {typeIcons[card.type]}
-                    {card.name}
+                    {typeIcons[type]}
+                    {name}
                 </p>
             </div>
 
-            {card.status != Status.Live && (
+            {status != Status.Live && (
                 <div className={styles.reputationCardStats}>
                     <p className={styles.reputationCardStatsInfo}>
                         32/50 Participants
@@ -81,7 +94,7 @@ const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
                     <div className={styles.reputationCardStatsDiagram}>
                         <div
                             className={styles.reputationCardStatsValue}
-                            style={{ width: `${card.percent}%` }}
+                            style={{ width: `${percent}%` }}
                         ></div>
                     </div>
 
@@ -140,7 +153,7 @@ const CardItem: React.FC<Props> = ({ card, handleOpenPopup }) => {
                 </div>
             </div>
 
-            {card.status == Status.Live && (
+            {status == Status.Live && (
                 <button
                     onClick={handleOpenPopup}
                     className={cn(styles.reputationCardBtn, pageStyles.item)}

@@ -17,6 +17,10 @@ const cards: Card[] = [
         status: Status.Date,
         date: "19.02.2023",
         percent: 87,
+        info: {
+            title: "Conditions for participation",
+            text: "You have to hold 750ZKOS to participate."
+        }
     },
     {
         id: 2,
